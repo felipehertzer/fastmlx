@@ -283,7 +283,7 @@ def handle_function_calls(
 
 # Model Loading and Generation Functions
 def load_vlm_model(model_name: str, config: Dict[str, Any]) -> Dict[str, Any]:
-    model, processor = vlm_load(model_name, {"trust_remote_code": True})
+    model, processor = vlm_load(model_name, trust_remote_code=True)
     image_processor = load_image_processor(model_name)
     return {
         "model": model,
