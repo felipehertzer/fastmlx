@@ -174,14 +174,14 @@ async def chat_completion(request: ChatCompletionRequest):
         if stream:
             return StreamingResponse(
                 vlm_stream_generator(
-                    model,
-                    request.model,
-                    processor,
-                    image_url,
-                    prompt,
-                    image_processor,
-                    request.max_tokens,
-                    request.temperature,
+                    model=model,
+                    model_name=request.model,
+                    processor=processor,
+                    image=image_url,
+                    prompt=prompt,
+                    image_processor=image_processor,
+                    max_tokens=request.max_tokens,
+                    temperature=request.temperature,
                     stream_options=request.stream_options,
                 ),
                 media_type="text/event-stream",
@@ -189,11 +189,11 @@ async def chat_completion(request: ChatCompletionRequest):
         else:
             # Generate the response
             output = vlm_generate(
-                model,
-                processor,
-                image_url,
-                prompt,
-                image_processor,
+                model=model,
+                processor=processor,
+                image=image_url,
+                prompt=prompt,
+                image_processor=image_processor,
                 max_tokens=request.max_tokens,
                 temp=request.temperature,
                 verbose=False,
